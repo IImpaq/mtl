@@ -1,0 +1,5 @@
+# Build Files
+bin/
+
+# Jetbrains IDE Settings
+.idea/
