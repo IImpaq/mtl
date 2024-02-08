@@ -19,6 +19,8 @@ namespace ntl {
    * @note The Lock class currently is just a wrapper around the pthread_mutex_t
    */
   class Lock {
+  friend class Condition;
+
   private:
     pthread_mutex_t m_mutex;
 
