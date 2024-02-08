@@ -545,13 +545,13 @@ TEST_CASE("Array functionality validation", "[data]") {
     array.Insert(8);
 
     Size idx = 0;
-    for(auto i : array) {
+    for (auto i : array) {
       idx++;
     }
     REQUIRE(idx == 3);
 
     idx = 0;
-    for(auto it = array.begin(), end = array.end(); it != end; ++it) {
+    for (auto it = array.begin(), end = array.end(); it != end; ++it) {
       const auto i = *it;
       REQUIRE(i == array[idx]);
       idx++;
