@@ -29,6 +29,7 @@ namespace ntl {
      * @note Uses a linked list internally.
      */
     Stack();
+
     /**
      * @brief Destroys the stack.
      */
@@ -44,6 +45,7 @@ namespace ntl {
      * @note Uses InsertFront to add the new element to the internal linked list.
      */
     void Push(const T& a_element);
+
     /**
      * @brief Removes the top element from the stack and returns it.
      *
@@ -55,6 +57,7 @@ namespace ntl {
      * internal linked list.
      */
     T Pop();
+
     /**
      * @brief Peeks at the element on top of the stack.
      *
@@ -90,8 +93,7 @@ namespace ntl {
 
   template<typename T>
   Stack<T>::Stack()
-    : m_data{List<T>()} {
-  }
+    : m_data{List<T>()} {}
 
   template<typename T>
   void Stack<T>::Push(const T& a_element) {

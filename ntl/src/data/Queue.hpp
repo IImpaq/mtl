@@ -29,6 +29,7 @@ namespace ntl {
      * @note Uses a linked list internally.
      */
     Queue();
+
     /**
      * @brief Destroys the queue.
      */
@@ -44,6 +45,7 @@ namespace ntl {
      * @note Uses InsertBack to add the new element to the internal linked list.
      */
     void Put(const T& a_element);
+
     /**
      * @brief Removes the first/oldest element from the queue and returns it.
      *
@@ -55,6 +57,7 @@ namespace ntl {
      * internal linked list.
      */
     T Get();
+
     /**
      * @brief Peeks at the element first/oldest element in the queue.
      *
@@ -77,6 +80,7 @@ namespace ntl {
      * to avoid unnecessary recalculations.
      */
     [[nodiscard]] Size GetSize() const;
+
     /**
      * @brief Checks if the queue is empty.
      *
@@ -89,8 +93,7 @@ namespace ntl {
 
   template<typename T>
   Queue<T>::Queue()
-      : m_data{List<T>()} {
-  }
+    : m_data{List<T>()} {}
 
   template<typename T>
   void Queue<T>::Put(const T& a_element) {

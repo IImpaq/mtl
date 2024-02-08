@@ -148,13 +148,13 @@ TEST_CASE("List functionality validation", "[data]") {
     list.InsertFront(2);
 
     Size idx = 0;
-    for(auto i : list) {
+    for (auto i : list) {
       idx++;
     }
     REQUIRE(idx == 3);
 
     Size value = 2;
-    for(auto it = list.begin(), end = list.end(); it != end; ++it) {
+    for (auto it = list.begin(), end = list.end(); it != end; ++it) {
       const auto i = *it;
       REQUIRE(i == value);
       value *= 2;
