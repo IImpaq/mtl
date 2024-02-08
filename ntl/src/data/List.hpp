@@ -26,7 +26,7 @@ namespace ntl {
      * @brief Represents a single element in the linked list.
      */
     struct Node {
-      T     value;
+      T value;
       Node* next;
     };
 
@@ -36,10 +36,10 @@ namespace ntl {
     class Iterator {
     public:
       using iterator_category = std::forward_iterator_tag;
-      using difference_type   = std::ptrdiff_t;
-      using value_type        = Node;
-      using pointer           = Node*;
-      using reference         = Node&;
+      using difference_type = std::ptrdiff_t;
+      using value_type = Node;
+      using pointer = Node*;
+      using reference = Node&;
 
     private:
       pointer m_ptr;
@@ -69,6 +69,7 @@ namespace ntl {
         m_ptr = m_ptr->next;
         return *this;
       }
+
       /**
        * @brief Overloading increment operator.
        * @return the next iterator
@@ -78,6 +79,7 @@ namespace ntl {
         (*this).m_ptr = (*this).m_ptr->next;
         return temp;
       }
+
       /**
        * @brief Overloading equivalence operator.
        * @param a_first the iterator to compare
@@ -87,6 +89,7 @@ namespace ntl {
       friend bool operator==(const Iterator& a_first, const Iterator& a_second) {
         return a_first.m_ptr == a_second.m_ptr;
       }
+
       /**
        * @brief Overloading anti equivalence operator.
        * @param a_first the iterator to compare
@@ -99,9 +102,9 @@ namespace ntl {
     };
 
   private:
-    Node*  m_head,
-        *  m_tail;
-    Size   m_size;
+    Node *m_head,
+        *m_tail;
+    Size m_size;
 
   public:
     /**
@@ -131,6 +134,7 @@ namespace ntl {
      * @param a_element the element
      */
     const Node* InsertFront(const T& a_element);
+
     /**
      * @brief Inserts a new element at the back of the linked list.
      *
@@ -139,6 +143,7 @@ namespace ntl {
      * @param a_element the element
      */
     const Node* InsertBack(const T& a_element);
+
     /**
      * @brief Inserts a new element after a given node of the linked list.
      *
@@ -158,6 +163,7 @@ namespace ntl {
      * @return if an element was removed from the linked list
      */
     bool RemoveElement(const T& a_element);
+
     /**
      * @brief Removes the element after a given node from the linked list.
      *
@@ -207,6 +213,7 @@ namespace ntl {
      * starting point of the linked list
      */
     const Node* GetHead() const;
+
     /**
      * @brief Gets the first usable node.
      *
@@ -215,6 +222,7 @@ namespace ntl {
      * @return the pointer to the first usable node
      */
     const Node* GetFront() const;
+
     /**
      * @brief Gets the last usable node.
      *
@@ -223,6 +231,7 @@ namespace ntl {
      * @return the pointer to the last usable node
      */
     const Node* GetBack() const;
+
     /**
      * @brief Checks if the linked list is empty.
      *
@@ -278,6 +287,7 @@ namespace ntl {
      * @return the iterator at the beginning
      */
     Iterator begin();
+
     /**
      * @brief Gets the end of the iterator.
      * @return the iterator at the end
@@ -330,7 +340,7 @@ namespace ntl {
     : m_head{new Node}, m_tail{nullptr}, m_size(a_other.m_size) {
     auto* curr1 = m_head;
     auto* curr2 = a_other.m_head;
-    while(curr2->next) {
+    while (curr2->next) {
       curr2 = curr2->next;
       auto* node = new Node;
       curr1->next = node;
@@ -350,7 +360,7 @@ namespace ntl {
   const typename List<T>::Node* List<T>::InsertFront(const T& a_element) {
     auto* result = new Node;
 
-    if(!m_head->next)
+    if (!m_head->next)
       m_tail = result;
 
     result->value = a_element;
@@ -386,7 +396,7 @@ namespace ntl {
     result->value = a_element;
     result->next = node->next;
 
-    if(!node->next)
+    if (!node->next)
       m_tail = result;
 
     node->next = result;
@@ -401,13 +411,13 @@ namespace ntl {
     auto* curr = m_head;
     bool success = false;
 
-    while(curr->next) {
-      if(curr->next->value == a_element) {
+    while (curr->next) {
+      if (curr->next->value == a_element) {
         auto* temp = curr->next->next;
         delete curr->next;
         curr->next = temp;
 
-        if(!curr->next)
+        if (!curr->next)
           m_tail = curr;
 
         success = true;
@@ -431,7 +441,7 @@ namespace ntl {
     delete node->next;
     node->next = temp;
 
-    if(!node->next)
+    if (!node->next)
       m_tail = node;
 
     m_size--;
@@ -441,7 +451,7 @@ namespace ntl {
   void List<T>::Clear() {
     auto* curr = m_head->next;
 
-    while(curr) {
+    while (curr) {
       auto* tmp = curr->next;
       delete curr;
       curr = tmp;
@@ -455,9 +465,9 @@ namespace ntl {
   const typename List<T>::Node* List<T>::FindElement(const T& a_element) const {
     auto* curr = m_head;
 
-    while(curr->next) {
+    while (curr->next) {
       curr = curr->next;
-      if(curr->value == a_element) {
+      if (curr->value == a_element) {
         break;
       }
     }
@@ -492,15 +502,15 @@ namespace ntl {
 
   template<typename T>
   bool List<T>::IsEqual(const List& a_other) const {
-    if(m_size != a_other.m_size)
+    if (m_size != a_other.m_size)
       return false;
 
     bool result = true;
     auto* curr1 = m_head;
     auto* curr2 = a_other.m_head;
 
-    while(curr1->next && curr2->next) {
-      if(curr1->next->value != curr2->next->value) {
+    while (curr1->next && curr2->next) {
+      if (curr1->next->value != curr2->next->value) {
         result = false;
         break;
       }
@@ -532,11 +542,11 @@ namespace ntl {
     String result = "List(";
     auto* curr = m_head;
 
-    while(true) {
+    while (true) {
       curr = curr->next;
       result += curr->value;
 
-      if(!curr->next) {
+      if (!curr->next) {
         result += ")\n";
         break;
       }
