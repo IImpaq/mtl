@@ -226,10 +226,10 @@ namespace ntl {
      *
      * @details Runtime: O(n), where n is the length of the string
      *
-     * @param a_char the character to remove
+     * @param a_other the character to remove
      * @return the reference to the current string
      */
-    String& Remove(char a_char);
+    String& Remove(char a_other);
 
     /**
      * @brief Clears the content of the string.
