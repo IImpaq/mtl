@@ -13,7 +13,8 @@ namespace ntl {
    *                                                   CONSTRUCTOR                                                     *
    ********************************************************************************************************************/
 
-  String::Iterator::Iterator(pointer a_ptr) : m_ptr(a_ptr) {
+  String::Iterator::Iterator(pointer a_ptr)
+    : m_ptr(a_ptr) {
     // Empty
   }
 
@@ -22,11 +23,11 @@ namespace ntl {
    *                                              OVERLOADED OPERATORS                                                 *
    ********************************************************************************************************************/
 
-  char &String::Iterator::operator*() const { return (*m_ptr); }
+  char& String::Iterator::operator*() const { return (*m_ptr); }
 
-  char *String::Iterator::operator->() const { return m_ptr; }
+  char* String::Iterator::operator->() const { return m_ptr; }
 
-  String::Iterator &String::Iterator::operator++() {
+  String::Iterator& String::Iterator::operator++() {
     m_ptr++;
     return *this;
   }
@@ -37,27 +38,30 @@ namespace ntl {
     return temp;
   }
 
-  bool operator==(const String::Iterator &a_first, const String::Iterator &a_second) {
+  bool operator==(const String::Iterator& a_first, const String::Iterator& a_second) {
     return a_first.m_ptr == a_second.m_ptr;
   }
 
-  bool operator!=(const String::Iterator &a_first, const String::Iterator &a_second) { return !(a_first == a_second); }
+  bool operator!=(const String::Iterator& a_first, const String::Iterator& a_second) { return !(a_first == a_second); }
 
   /*********************************************************************************************************************
    *                                                     STRING                                                        *
    *                                                  CONSTRUCTORS                                                     *
    ********************************************************************************************************************/
 
-  String::String() : m_capacity{DEFAULT_STRING_SIZE}, m_used{0}, m_data{new char[m_capacity + 1]} {
+  String::String()
+    : m_capacity{DEFAULT_STRING_SIZE}, m_used{0}, m_data{new char[m_capacity + 1]} {
     m_data[m_used] = '\0';
   }
 
-  String::String(char a_char) : m_capacity{DEFAULT_STRING_SIZE}, m_used{1}, m_data{new char[m_capacity + 1]} {
+  String::String(char a_char)
+    : m_capacity{DEFAULT_STRING_SIZE}, m_used{1}, m_data{new char[m_capacity + 1]} {
     m_data[m_used - 1] = a_char;
     m_data[m_used] = '\0';
   }
 
-  String::String(const char *a_string) : m_used{std::strlen(a_string)}, m_data{new char[(m_used * 2) + 1]} {
+  String::String(const char* a_string)
+    : m_used{std::strlen(a_string)}, m_data{new char[(m_used * 2) + 1]} {
     VERIFY(a_string != nullptr)
 
     m_capacity = m_used * 2;
@@ -67,20 +71,20 @@ namespace ntl {
 
   String::~String() { delete[] m_data; }
 
-  String::String(const String &a_other) :
-      m_capacity{a_other.m_used * 2}, m_used{a_other.m_used}, m_data{new char[m_capacity + 1]} {
+  String::String(const String& a_other)
+    : m_capacity{a_other.m_used * 2}, m_used{a_other.m_used}, m_data{new char[m_capacity + 1]} {
     std::copy_n(a_other.m_data, m_used, m_data);
     m_data[m_used] = '\0';
   }
 
-  String::String(String &&a_other) noexcept : String() { swap(*this, a_other); }
+  String::String(String&& a_other) noexcept : String() { swap(*this, a_other); }
 
   /*********************************************************************************************************************
    *                                                     STRING                                                        *
    *                                                 PUBLIC METHODS                                                    *
    ********************************************************************************************************************/
 
-  String &String::Append(const String &a_other) {
+  String& String::Append(const String& a_other) {
     const Size total_len = m_used + a_other.m_used;
 
     if (total_len >= m_capacity) {
@@ -97,7 +101,7 @@ namespace ntl {
     return *this;
   }
 
-  String &String::Append(const char *a_other) {
+  String& String::Append(const char* a_other) {
     const Size other_len = std::strlen(a_other);
     const Size total_len = m_used + other_len;
 
@@ -114,7 +118,7 @@ namespace ntl {
     return *this;
   }
 
-  String &String::Append(char a_other) {
+  String& String::Append(char a_other) {
     const Size total_len = m_used + 1;
 
     if (total_len >= m_capacity) {
@@ -128,19 +132,19 @@ namespace ntl {
     return *this;
   }
 
-  String &String::Append(int a_other) { return Append(std::to_string(a_other).c_str()); }
+  String& String::Append(int a_other) { return Append(std::to_string(a_other).c_str()); }
 
-  String &String::Append(Size a_other) { return Append(std::to_string(a_other).c_str()); }
+  String& String::Append(Size a_other) { return Append(std::to_string(a_other).c_str()); }
 
-  String &String::Append(double a_other) { return Append(std::to_string(a_other).c_str()); }
+  String& String::Append(double a_other) { return Append(std::to_string(a_other).c_str()); }
 
-  String &String::Append(float a_other) { return Append(std::to_string(a_other).c_str()); }
+  String& String::Append(float a_other) { return Append(std::to_string(a_other).c_str()); }
 
-  String &String::Append(bool a_other) { return Append(a_other ? "true" : "false"); }
+  String& String::Append(bool a_other) { return Append(a_other ? "true" : "false"); }
 
-  String &String::Remove(char a_other) { return Replace(a_other, '\0'); }
+  String& String::Remove(char a_other) { return Replace(a_other, '\0'); }
 
-  String &String::Clear() {
+  String& String::Clear() {
     delete[] m_data;
     m_used = 0;
     m_data = new char[m_capacity + 1];
@@ -154,7 +158,7 @@ namespace ntl {
     VERIFY(a_capacity > m_capacity)
 
     m_capacity = a_capacity;
-    auto *temp = new char[m_capacity];
+    auto* temp = new char[m_capacity];
 
     for (Size i = 0; i < m_used; ++i) {
       temp[i] = m_data[i];
@@ -175,7 +179,7 @@ namespace ntl {
     return index >= m_used ? -1 : index;
   }
 
-  String &String::Replace(const String &a_old, const String &a_new) {
+  String& String::Replace(const String& a_old, const String& a_new) {
     VERIFY(!a_old.IsEmpty())
 
     Size seq_idx = -1;
@@ -206,8 +210,7 @@ namespace ntl {
       for (Size new_idx = 0; new_idx < a_new.m_used; ++new_idx) {
         m_data[seq_idx + new_idx] = a_new[new_idx];
       }
-    }
-    else {
+    } else {
       // TODO: improve replacing of bigger string
       Size new_length = m_used - (a_old.m_used - a_new.m_used);
 
@@ -215,7 +218,7 @@ namespace ntl {
         Resize(m_capacity * 2);
       }
 
-      char *temp = new char[m_capacity + 1];
+      char* temp = new char[m_capacity + 1];
       for (Size i = 0; i < seq_idx; ++i) {
         temp[i] = m_data[i];
       }
@@ -238,7 +241,7 @@ namespace ntl {
     return (*this);
   }
 
-  String &String::Replace(char a_old, char a_new) {
+  String& String::Replace(char a_old, char a_new) {
     if (a_new == '\0') {
       Size i = 0;
       for (; i < m_used; ++i) {
@@ -250,8 +253,7 @@ namespace ntl {
       }
       m_used--;
       m_data[m_used] = '\0';
-    }
-    else {
+    } else {
       for (Size i = 0; i < m_used; ++i) {
         if (m_data[i] != a_old)
           continue;
@@ -263,12 +265,12 @@ namespace ntl {
     return (*this);
   }
 
-  String &String::ToLowerCase() {
+  String& String::ToLowerCase() {
     std::transform(begin(), end(), m_data, [](unsigned char c) { return std::tolower(c); });
     return (*this);
   }
 
-  String &String::ToUpperCase() {
+  String& String::ToUpperCase() {
     std::transform(begin(), end(), m_data, [](unsigned char c) { return std::toupper(c); });
     return (*this);
   }
@@ -279,14 +281,14 @@ namespace ntl {
     return hash;
   }
 
-  const char &String::Get(Size a_index) const {
+  const char& String::Get(Size a_index) const {
     VERIFY(a_index < m_used)
     return m_data[a_index];
   }
 
-  char &String::Get(Size a_index) { return m_data[a_index]; }
+  char& String::Get(Size a_index) { return m_data[a_index]; }
 
-  bool String::IsEqual(const String &a_other) const {
+  bool String::IsEqual(const String& a_other) const {
     if (m_used != a_other.m_used)
       return false;
 
@@ -298,12 +300,12 @@ namespace ntl {
     return true;
   }
 
-  bool String::IsEqual(const char *a_other) const {
+  bool String::IsEqual(const char* a_other) const {
     VERIFY(a_other != nullptr)
     return (strcmp(m_data, a_other) == 0);
   }
 
-  const char *String::GetCString() const { return m_data; }
+  const char* String::GetCString() const { return m_data; }
 
   Size String::GetLength() const { return m_used; }
 
@@ -313,7 +315,7 @@ namespace ntl {
 
   bool String::IsEmpty() const { return m_used == 0; }
 
-  void swap(String &a_left, String &a_right) noexcept {
+  void swap(String& a_left, String& a_right) noexcept {
     std::swap(a_left.m_capacity, a_right.m_capacity);
     std::swap(a_left.m_used, a_right.m_used);
     std::swap(a_left.m_data, a_right.m_data);
@@ -328,7 +330,7 @@ namespace ntl {
    *                                              OVERLOADED OPERATORS                                                 *
    ********************************************************************************************************************/
 
-  String &String::operator=(const String &a_other) {
+  String& String::operator=(const String& a_other) {
     m_used = a_other.m_used;
     m_capacity = a_other.m_capacity;
     m_data = new char[m_capacity + 1];
@@ -340,7 +342,7 @@ namespace ntl {
     return (*this);
   }
 
-  String &String::operator=(const char *a_string) {
+  String& String::operator=(const char* a_string) {
     VERIFY(a_string != nullptr)
 
     Size new_length = std::strlen(a_string);
@@ -357,38 +359,38 @@ namespace ntl {
     return (*this);
   }
 
-  const char &String::operator[](Size a_index) const { return Get(a_index); }
+  const char& String::operator[](Size a_index) const { return Get(a_index); }
 
-  char &String::operator[](Size a_index) { return Get(a_index); }
+  char& String::operator[](Size a_index) { return Get(a_index); }
 
-  bool String::operator==(const String &a_other) const { return IsEqual(a_other); }
+  bool String::operator==(const String& a_other) const { return IsEqual(a_other); }
 
-  bool String::operator==(const char *a_other) const { return IsEqual(a_other); }
+  bool String::operator==(const char* a_other) const { return IsEqual(a_other); }
 
-  bool String::operator!=(const String &a_other) const { return (!((*this) == a_other)); }
+  bool String::operator!=(const String& a_other) const { return (!((*this) == a_other)); }
 
-  bool String::operator!=(const char *a_other) const {
+  bool String::operator!=(const char* a_other) const {
     VERIFY(a_other != nullptr)
     return (!((*this) == a_other));
   }
 
-  String &String::operator+=(const String &a_other) { return Append(a_other); }
+  String& String::operator+=(const String& a_other) { return Append(a_other); }
 
-  String &String::operator+=(const char *a_other) { return Append(a_other); }
+  String& String::operator+=(const char* a_other) { return Append(a_other); }
 
-  String &String::operator+=(char a_other) { return Append(a_other); }
+  String& String::operator+=(char a_other) { return Append(a_other); }
 
-  String &String::operator+=(int a_other) { return Append(a_other); }
+  String& String::operator+=(int a_other) { return Append(a_other); }
 
-  String &String::operator+=(Size a_other) { return Append(a_other); }
+  String& String::operator+=(Size a_other) { return Append(a_other); }
 
-  String &String::operator+=(double a_other) { return Append(a_other); }
+  String& String::operator+=(double a_other) { return Append(a_other); }
 
-  String &String::operator+=(float a_other) { return Append(a_other); }
+  String& String::operator+=(float a_other) { return Append(a_other); }
 
-  String &String::operator+=(bool a_other) { return Append(a_other); }
+  String& String::operator+=(bool a_other) { return Append(a_other); }
 
-  String operator+(const String &a_left, const String &a_right) {
+  String operator+(const String& a_left, const String& a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -396,7 +398,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, const char *a_right) {
+  String operator+(const String& a_left, const char* a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -404,7 +406,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, char a_right) {
+  String operator+(const String& a_left, char a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -412,7 +414,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, int a_right) {
+  String operator+(const String& a_left, int a_right) {
     /*auto size = static_cast<int>(trunc(log10(a_right)) + 1);
     char* c_str = new char[size];
     std::to_chars(c_str, c_str + size, a_right);*/
@@ -424,7 +426,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, Size a_right) {
+  String operator+(const String& a_left, Size a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -432,7 +434,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, double a_right) {
+  String operator+(const String& a_left, double a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -440,14 +442,7 @@ namespace ntl {
     return result;
   }
 
-  String operator+(const String &a_left, float a_right) {
-    String result{};
-    result.Append(a_left);
-    result.Append(a_right);
-
-    return result;
-  }
-  String operator+(const String &a_left, bool a_right) {
+  String operator+(const String& a_left, float a_right) {
     String result{};
     result.Append(a_left);
     result.Append(a_right);
@@ -455,7 +450,15 @@ namespace ntl {
     return result;
   }
 
-  std::ostream &operator<<(std::ostream &a_stream, const String &a_string) {
+  String operator+(const String& a_left, bool a_right) {
+    String result{};
+    result.Append(a_left);
+    result.Append(a_right);
+
+    return result;
+  }
+
+  std::ostream& operator<<(std::ostream& a_stream, const String& a_string) {
     a_stream << a_string.m_data;
     return a_stream;
   }
@@ -464,5 +467,4 @@ namespace ntl {
    *                                                     STRING                                                        *
    *                                                 PRIVATE METHODS                                                   *
    ********************************************************************************************************************/
-
 } // namespace ntl

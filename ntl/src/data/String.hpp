@@ -31,8 +31,8 @@ namespace ntl {
       using iterator_category = std::forward_iterator_tag;
       using difference_type = std::ptrdiff_t;
       using value_type = char;
-      using pointer = char *;
-      using reference = char &;
+      using pointer = char*;
+      using reference = char&;
 
     private:
       pointer m_ptr;
@@ -48,19 +48,19 @@ namespace ntl {
        * @brief Overloading reference operator.
        * @return the reference to the value of the current iteration
        */
-      char &operator*() const;
+      char& operator*() const;
 
       /**
        * @brief Overloading pointer operator.
        * @return the pointer to the value of the current iteration
        */
-      char *operator->() const;
+      char* operator->() const;
 
       /**
        * @brief Overloading increment operator.
        * @return the reference to the next iterator
        */
-      Iterator &operator++();
+      Iterator& operator++();
 
       /**
        * @brief Overloading increment operator.
@@ -74,7 +74,7 @@ namespace ntl {
        * @param a_second the iterator to compare with
        * @return if both vectors are equivalent
        */
-      friend bool operator==(const Iterator &a_first, const Iterator &a_second);
+      friend bool operator==(const Iterator& a_first, const Iterator& a_second);
 
       /**
        * @brief Overloading anti equivalence operator.
@@ -82,12 +82,12 @@ namespace ntl {
        * @param a_second the iterator to compare with
        * @return if both vectors aren't equivalent
        */
-      friend bool operator!=(const Iterator &a_first, const Iterator &a_second);
+      friend bool operator!=(const Iterator& a_first, const Iterator& a_second);
     };
 
   private:
     Size m_capacity, m_used;
-    char *m_data;
+    char* m_data;
 
   public:
     /**
@@ -113,7 +113,7 @@ namespace ntl {
      *
      * @param a_string a c-string
      */
-    String(const char *a_string);
+    String(const char* a_string);
 
     /**
      * @brief Default Destructor.
@@ -130,7 +130,7 @@ namespace ntl {
      *
      * @param a_other a string
      */
-    String(const String &a_other);
+    String(const String& a_other);
 
     /**
      * @brief Move Constructor.
@@ -139,7 +139,7 @@ namespace ntl {
      *
      * @param a_other a string
      */
-    String(String &&a_other) noexcept;
+    String(String&& a_other) noexcept;
 
     /**
      * @brief Appends another string to the current string.
@@ -149,7 +149,7 @@ namespace ntl {
      * @param a_other the other string
      * @return the reference to the current string
      */
-    String &Append(const String &a_other);
+    String& Append(const String& a_other);
 
     /**
      * @brief Appends a c-string to the current string.
@@ -159,7 +159,7 @@ namespace ntl {
      * @param a_other the c-string
      * @return the reference to the current string
      */
-    String &Append(const char *a_other);
+    String& Append(const char* a_other);
 
     /**
      * @brief Appends a character to the current string.
@@ -169,7 +169,7 @@ namespace ntl {
      * @param a_other the character
      * @return the reference to the current string
      */
-    String &Append(char a_other);
+    String& Append(char a_other);
 
     /**
      * @brief Appends an integer to the current string.
@@ -179,7 +179,7 @@ namespace ntl {
      * @param a_other the integer
      * @return the reference to the current string
      */
-    String &Append(int a_other);
+    String& Append(int a_other);
 
     /**
      * @brief Appends a size to the current string.
@@ -189,7 +189,7 @@ namespace ntl {
      * @param a_other the size
      * @return the reference to the current string
      */
-    String &Append(Size a_other);
+    String& Append(Size a_other);
 
     /**
      * @brief Appends a double to the current string.
@@ -199,7 +199,7 @@ namespace ntl {
      * @param a_other the double
      * @return the reference to the current string
      */
-    String &Append(double a_other);
+    String& Append(double a_other);
 
     /**
      * @brief Appends a float to the current string.
@@ -209,7 +209,7 @@ namespace ntl {
      * @param a_other the float
      * @return the reference to the current string
      */
-    String &Append(float a_other);
+    String& Append(float a_other);
 
     /**
      * @brief Appends a boolean to the current string.
@@ -219,7 +219,7 @@ namespace ntl {
      * @param a_other the boolean
      * @return the reference to the current string
      */
-    String &Append(bool a_other);
+    String& Append(bool a_other);
 
     /**
      * @brief Removes a character from the current string.
@@ -229,14 +229,14 @@ namespace ntl {
      * @param a_char the character to remove
      * @return the reference to the current string
      */
-    String &Remove(char a_char);
+    String& Remove(char a_char);
 
     /**
      * @brief Clears the content of the string.
      *
      * @details Runtime: O(1)
      */
-    String &Clear();
+    String& Clear();
 
     /**
      * @brief Resizes the string to the given capacity.
@@ -267,7 +267,7 @@ namespace ntl {
      * @param a_new a new string to replace the old one with
      * @return the reference to the current string object
      */
-    String &Replace(const String &a_old, const String &a_new);
+    String& Replace(const String& a_old, const String& a_new);
 
     /**
      * @brief Replaces a given char with another one.
@@ -278,7 +278,7 @@ namespace ntl {
      * @param a_new a new char to replace the old one with
      * @return the reference to the current string object
      */
-    String &Replace(char a_old, char a_new);
+    String& Replace(char a_old, char a_new);
 
     /**
      * @brief Gets a copy of the string in lowercase.
@@ -287,7 +287,7 @@ namespace ntl {
      *
      * @return the lowercase string object
      */
-    String &ToLowerCase();
+    String& ToLowerCase();
 
     /**
      * @brief Converts the string to be uppercase.
@@ -296,7 +296,7 @@ namespace ntl {
      *
      * @return the reference to the current string object
      */
-    String &ToUpperCase();
+    String& ToUpperCase();
 
     /**
      * @brief Gets the hash of the current string.
@@ -315,7 +315,7 @@ namespace ntl {
      * @param a_index the index of the character
      * @return the character itself
      */
-    [[nodiscard]] const char &Get(Size a_index) const;
+    [[nodiscard]] const char& Get(Size a_index) const;
 
     /**
      * @brief Gets the character at the given index.
@@ -325,7 +325,7 @@ namespace ntl {
      * @param a_index the index of the character
      * @return the character itself
      */
-    char &Get(Size a_index);
+    char& Get(Size a_index);
 
     /**
      * @brief Checks if the string is equal to another string.
@@ -335,7 +335,7 @@ namespace ntl {
      * @param a_other the other string to compare with
      * @return if the strings are equal
      */
-    [[nodiscard]] bool IsEqual(const String &a_other) const;
+    [[nodiscard]] bool IsEqual(const String& a_other) const;
 
     /**
      * @brief Checks if the string is equal to another c-string.
@@ -345,7 +345,7 @@ namespace ntl {
      * @param a_other the other string to compare with
      * @return if the strings are equal
      */
-    bool IsEqual(const char *a_other) const;
+    bool IsEqual(const char* a_other) const;
 
     /**
      * @brief Gets the content of the string as a c-string.
@@ -354,7 +354,7 @@ namespace ntl {
      *
      * @return the content as a c-string
      */
-    [[nodiscard]] inline const char *GetCString() const;
+    [[nodiscard]] inline const char* GetCString() const;
 
     /**
      * @brief Gets the length of the string (without the null terminator).
@@ -400,7 +400,7 @@ namespace ntl {
      * @param a_left the first string
      * @param a_right the second string
      */
-    friend void swap(String &a_left, String &a_right) noexcept;
+    friend void swap(String& a_left, String& a_right) noexcept;
 
     /**
      * @brief Gets the beginning of the iterator.
@@ -419,112 +419,112 @@ namespace ntl {
      * @param a_other a string
      * @return the reference to the current string object
      */
-    String &operator=(const String &a_other);
+    String& operator=(const String& a_other);
 
     /**
      * @brief Overloading assignment operator.
      * @param a_string a c-string
      * @return the reference to the current string object
      */
-    String &operator=(const char *a_string);
+    String& operator=(const char* a_string);
 
     /**
      * @brief Overloading subscript operator.
      * @param a_index a index
      * @return the char at a given index
      */
-    const char &operator[](Size a_index) const;
+    const char& operator[](Size a_index) const;
 
     /**
      * @brief Overloading subscript operator.
      * @param a_index a index
      * @return the reference to the char at a given index
      */
-    char &operator[](Size a_index);
+    char& operator[](Size a_index);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the string to add
      * @return the reference of the current string object
      */
-    String &operator+=(const String &a_other);
+    String& operator+=(const String& a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the c-string to add
      * @return the reference of the current string object
      */
-    String &operator+=(const char *a_other);
+    String& operator+=(const char* a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the character to add
      * @return the reference of the current string object
      */
-    String &operator+=(char a_other);
+    String& operator+=(char a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the integer to add
      * @return the reference of the current string object
      */
-    String &operator+=(int a_other);
+    String& operator+=(int a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the size_t to add
      * @return the reference of the current string object
      */
-    String &operator+=(Size a_other);
+    String& operator+=(Size a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the double to add
      * @return the reference of the current string object
      */
-    String &operator+=(double a_other);
+    String& operator+=(double a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the float to add
      * @return the reference of the current string object
      */
-    String &operator+=(float a_other);
+    String& operator+=(float a_other);
 
     /**
      * @brief Overloading addition assignment operator.
      * @param a_other the bool to add
      * @return the reference of the current string object
      */
-    String &operator+=(bool a_other);
+    String& operator+=(bool a_other);
 
     /**
      * @brief Overloading equivalence operator.
      * @param a_other a string to compare with
      * @return if both strings are equivalent
      */
-    bool operator==(const String &a_other) const;
+    bool operator==(const String& a_other) const;
 
     /**
      * @brief Overloading equivalence operator.
      * @param a_other a c-string to compare with
      * @return if both strings are equivalent
      */
-    bool operator==(const char *a_other) const;
+    bool operator==(const char* a_other) const;
 
     /**
      * @brief Overloading anti equivalence operator.
      * @param a_other a string to compare with
      * @return if both strings aren't equivalent
      */
-    bool operator!=(const String &a_other) const;
+    bool operator!=(const String& a_other) const;
 
     /**
      * @brief Overloading anti equivalence operator.
      * @param a_other a c-string to compare with
      * @return if both strings aren't equivalent
      */
-    bool operator!=(const char *a_other) const;
+    bool operator!=(const char* a_other) const;
 
     /**
      * @brief Overloading addition operator.
@@ -532,7 +532,7 @@ namespace ntl {
      * @param a_right the string to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, const String &a_right);
+    friend String operator+(const String& a_left, const String& a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -540,7 +540,7 @@ namespace ntl {
      * @param a_right the c-string to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, const char *a_right);
+    friend String operator+(const String& a_left, const char* a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -548,7 +548,7 @@ namespace ntl {
      * @param a_right the cchar to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, char a_right);
+    friend String operator+(const String& a_left, char a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -556,7 +556,7 @@ namespace ntl {
      * @param a_right the integer to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, int a_right);
+    friend String operator+(const String& a_left, int a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -564,7 +564,7 @@ namespace ntl {
      * @param a_right the size_t to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, Size a_right);
+    friend String operator+(const String& a_left, Size a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -572,7 +572,7 @@ namespace ntl {
      * @param a_right the double to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, double a_right);
+    friend String operator+(const String& a_left, double a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -580,7 +580,7 @@ namespace ntl {
      * @param a_right the float to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, float a_right);
+    friend String operator+(const String& a_left, float a_right);
 
     /**
      * @brief Overloading addition operator.
@@ -588,7 +588,7 @@ namespace ntl {
      * @param a_right the bool to append
      * @return the concatenated vector object
      */
-    friend String operator+(const String &a_left, bool a_right);
+    friend String operator+(const String& a_left, bool a_right);
 
     /**
      * @brief Overloading the left shift operator.
@@ -596,7 +596,7 @@ namespace ntl {
      * @param a_string the string
      * @return the combined ostream
      */
-    friend std::ostream &operator<<(std::ostream &a_stream, const String &a_string);
+    friend std::ostream& operator<<(std::ostream& a_stream, const String& a_string);
   };
 } // namespace ntl
 
