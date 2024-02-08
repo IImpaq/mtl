@@ -37,4 +37,4 @@ I won't and can't guarantee that anything works (correctly) and/or that nothing 
 Marcus Gugacs
 
 ## License
-See LICENSE file
+See LICENSE as well as the 3RD-PARTY-LICENSES file.
