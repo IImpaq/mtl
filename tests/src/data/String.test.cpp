@@ -10,7 +10,7 @@
 #include "data/Array.hpp"
 #include "data/String.hpp"
 
-TEST_CASE("String functionality validation", "[datatypes]") {
+TEST_CASE("String functionality validation", "[data]") {
   using namespace ntl;
 
   SECTION("constructing new string") {
