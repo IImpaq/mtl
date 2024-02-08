@@ -66,11 +66,11 @@ TEST_CASE("String functionality validation", "[data]") {
     REQUIRE(a == String{"abcdabcd"});
 
     String c{""};
-    for(Size i = 0; i < 2048; ++i) {
+    for (Size i = 0; i < 2048; ++i) {
       c += "a";
     }
     REQUIRE(c.GetLength() == 2048);
-    for(Size i = 0; i < 2048; ++i) {
+    for (Size i = 0; i < 2048; ++i) {
       REQUIRE(c[i] == 'a');
     }
   }
@@ -109,6 +109,20 @@ TEST_CASE("String functionality validation", "[data]") {
     REQUIRE(string.Find('f') == -1);
   }
 
+  SECTION("splitting a string") {
+    String string{"aabcdde"};
+    Array<String> split = string.Split(3);
+
+    REQUIRE(split[0].GetLength() == 4);
+    REQUIRE(split[1].GetLength() == 3);
+
+    REQUIRE(split[0].Find('a') == 0);
+    REQUIRE(split[0].Find('b') == 2);
+    REQUIRE(split[0].Find('c') == 3);
+    REQUIRE(split[1].Find('d') == 0);
+    REQUIRE(split[1].Find('e') == 2);
+  }
+
   SECTION("replacing parts of a string") {
     String string{"aabcddff"};
     string.Replace('b', 'c');
@@ -127,7 +141,7 @@ TEST_CASE("String functionality validation", "[data]") {
     String string{"aabcdde"};
 
     Size idx = 0;
-    for(char c : string) {
+    for (char c : string) {
       REQUIRE(string[idx] == c);
       idx++;
     }
