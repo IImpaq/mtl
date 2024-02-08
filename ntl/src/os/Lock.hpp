@@ -16,7 +16,7 @@ namespace ntl {
   /**
    * @brief A class that provides synchronization mechanism using mutual-exclusives.
    *
-   * @note The Mutex class currently is just a wrapper around the std::mutex.
+   * @note The Lock class currently is just a wrapper around the pthread_mutex_t
    */
   class Lock {
   private:
