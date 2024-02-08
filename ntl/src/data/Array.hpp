@@ -32,11 +32,9 @@ namespace ntl {
     union ArrayChunk {
       T value;
 
-      ArrayChunk() {
-      }
+      ArrayChunk() {}
 
-      ~ArrayChunk() {
-      }
+      ~ArrayChunk() {}
     };
 
     /**
