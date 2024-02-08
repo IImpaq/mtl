@@ -2,7 +2,7 @@
 * @file Real.hpp
 * @author Marcus Gugacs
 * @date 02/07/2024
-* @copyright Copyright (c) 2024 Marcus Gugacs. All rights reserved.
+* @copyright Copyright (c) 2022-2024 Marcus Gugacs. All rights reserved.
 */
 
 #ifndef NTL_REAL_HPP
