@@ -7,6 +7,8 @@
 
 #include "String.hpp"
 
+#include "data/Array.hpp"
+
 namespace ntl {
   /*********************************************************************************************************************
    *                                                    ITERATOR                                                       *
@@ -167,6 +169,24 @@ namespace ntl {
 
     delete[] m_data;
     m_data = temp;
+  }
+
+  Array<String> String::Split(const Size a_index) const {
+    VERIFY(a_index < m_used)
+
+    Array<String> result{2, false};
+    result.Insert(String{});
+    result.Insert(String{});
+
+    Size i = 0;
+    for (; i <= a_index; ++i) {
+      result[0].Append(m_data[i]);
+    }
+    for (; i < m_used; ++i) {
+      result[1].Append(m_data[i]);
+    }
+
+    return result;
   }
 
   Size String::Find(const char a_char) const {

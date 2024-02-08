@@ -18,6 +18,9 @@
 #define DEFAULT_STRING_SIZE 1024
 
 namespace ntl {
+  template<typename T>
+  class Array;
+
   /**
    * @brief String class representing a collection of characters.
    */
@@ -246,6 +249,16 @@ namespace ntl {
      * @param a_capacity the capacity to resize to
      */
     void Resize(Size a_capacity);
+
+    /**
+     * @brief Splits the string at a given index.
+     *
+     * @details Runtime: O(n), where n is the length of the string
+     *
+     * @param a_index an index
+     * @return the vector containing the seperated string
+     */
+    Array<String> Split(Size a_index) const;
 
     /**
      * @brief Finds the first occurrence of a given char.
