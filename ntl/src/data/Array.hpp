@@ -165,6 +165,8 @@ namespace ntl {
      * The default capacity of the array is 1024 with auto sorting disabled
      * and automatic resizing disabled.
      *
+     * @details Runtime: O(1)
+     *
      * @param a_capacity the maximum capacity
      * @param a_keep_sorted if the array should be kept sorted
      * @param a_growable if the array should be able to grow when maximum capacity is reached
