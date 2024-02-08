@@ -1,11 +1,11 @@
-#include <stddef.h>
-#include <stdlib.h>
+#include "data/Array.hpp"
+#include "data/String.hpp"
 
 int main()
 {
-  // Be sure to test your new-operator implementation ;)
-  int* p = new int;
-  delete p;
+  ntl::String test = "string";
+  ntl::Array<int> array{};
+  array.Insert(1);
 
-  return -1;
+  return 0;
 }
