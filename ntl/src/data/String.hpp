@@ -354,7 +354,7 @@ namespace ntl {
      *
      * @return the content as a c-string
      */
-    [[nodiscard]] inline const char* GetCString() const;
+    [[nodiscard]] const char* GetCString() const;
 
     /**
      * @brief Gets the length of the string (without the null terminator).
@@ -363,7 +363,7 @@ namespace ntl {
      *
      * @return the length of the string
      */
-    [[nodiscard]] inline Size GetLength() const;
+    [[nodiscard]] Size GetLength() const;
 
     /**
      * @brief Gets the size of the string (including the null terminator).
@@ -372,7 +372,7 @@ namespace ntl {
      *
      * @return the size of the string
      */
-    [[nodiscard]] inline Size GetSize() const;
+    [[nodiscard]] Size GetSize() const;
 
     /**
      * @brief Gets the capacity of the string.
@@ -381,7 +381,7 @@ namespace ntl {
      *
      * @return the maximum capacity
      */
-    [[nodiscard]] inline Size GetCapacity() const;
+    [[nodiscard]] Size GetCapacity() const;
 
     /**
      * @brief Gets if the string is empty.
@@ -390,7 +390,7 @@ namespace ntl {
      *
      * @return if the string is empty
      */
-    [[nodiscard]] inline bool IsEmpty() const;
+    [[nodiscard]] bool IsEmpty() const;
 
     /**
      * @brief Swaps two strings with each other.
