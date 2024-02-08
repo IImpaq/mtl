@@ -5,8 +5,8 @@
 * @copyright Copyright (c) 2023-2024 Marcus Gugacs. All rights reserved.
 */
 
-#ifndef NTL_RW_LOCK_HPP
-#define NTL_RW_LOCK_HPP
+#ifndef NTL_SHARED_LOCK_HPP
+#define NTL_SHARED_LOCK_HPP
 
 #include <pthread.h>
 
@@ -85,4 +85,4 @@ namespace ntl {
   };
 }
 
-#endif // NTL_RW_LOCK_HPP
+#endif // NTL_SHARED_LOCK_HPP
