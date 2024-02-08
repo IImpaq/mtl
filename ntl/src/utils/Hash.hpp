@@ -1,5 +1,5 @@
 /**
-* @file Hashhpp
+* @file Hash.hpp
 * @author Marcus Gugacs
 * @date 02/08/2024
 * @copyright Copyright (c) 2024 Marcus Gugacs. All rights reserved.
