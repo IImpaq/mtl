@@ -38,3 +38,6 @@ Marcus Gugacs
 
 ## License
 See LICENSE as well as the 3RD-PARTY-LICENSES file.
+
+## Contact
+If you have any questions and want to get in contact with me, just [send me an email](mailto:iimpaq@proton.me)
