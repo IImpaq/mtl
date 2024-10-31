@@ -199,6 +199,30 @@ namespace ntl {
     return index >= m_used ? -1 : index;
   }
 
+  Size String::Find(const String& a_sequence) const {
+    VERIFY(!a_sequence.IsEmpty())
+
+    for (Size i = 0; i < m_used; ++i) {
+      if (m_data[i] != a_sequence[0])
+        continue;
+
+      bool found = true;
+
+      for (Size j = 1; j < a_sequence.m_used; ++j) {
+        if (m_data[i + j] != a_sequence[j]) {
+          found = false;
+          break;
+        }
+      }
+
+      if (found) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
   String& String::Replace(const String& a_old, const String& a_new) {
     VERIFY(!a_old.IsEmpty())
 
@@ -476,6 +500,14 @@ namespace ntl {
     result.Append(a_right);
 
     return result;
+  }
+
+  bool operator<(const String& a_left, const String& a_right) {
+    return a_left.GetLength() < a_right.GetLength();
+  }
+
+  bool operator>(const String& a_left, const String& a_right) {
+    return a_right.GetLength() > a_left.GetLength();
   }
 
   std::ostream& operator<<(std::ostream& a_stream, const String& a_string) {

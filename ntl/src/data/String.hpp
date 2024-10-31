@@ -271,6 +271,16 @@ namespace ntl {
     [[nodiscard]] Size Find(char a_char) const;
 
     /**
+     * @brief Finds the first occurrence of a given sequence.
+     *
+     * @details Runtime: O(n), where n is the length of the string
+     *
+     * @param a_sequence a sequence
+     * @return the index of the first occurrence
+     */
+    [[nodiscard]] Size Find(const String& a_sequence) const;
+
+    /**
      * @brief Replaces a given string with another string.
      *
      * @details Runtime: O(n*m), where n is the length of the string
@@ -604,6 +614,22 @@ namespace ntl {
     friend String operator+(const String& a_left, bool a_right);
 
     /**
+     * @brief Overloading less than operator.
+     * @param a_left the left string to compare
+     * @param a_right the right string to compare
+     * @return if the left string is shorter than the right string
+     */
+    friend bool operator<(const String& a_left, const String& a_right);
+
+    /**
+     * @brief Overloading greater than operator.
+     * @param a_left the left string to compare
+     * @param a_right the right string to compare
+     * @return if the left string is longer than the right string
+     */
+    friend bool operator>(const String& a_left, const String& a_right);
+
+    /**
      * @brief Overloading the left shift operator.
      * @param a_stream the ostream
      * @param a_string the string
@@ -612,5 +638,14 @@ namespace ntl {
     friend std::ostream& operator<<(std::ostream& a_stream, const String& a_string);
   };
 } // namespace ntl
+
+namespace std {
+  template<>
+  struct hash<ntl::String> {
+    size_t operator()(const ntl::String& str) const {
+      return str.GetHash();
+    }
+  };
+}
 
 #endif // NTL_STRING_HPP
