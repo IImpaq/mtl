@@ -502,6 +502,14 @@ namespace ntl {
     return result;
   }
 
+  bool operator<(const String& a_left, const String& a_right) {
+    return a_left.GetLength() < a_right.GetLength();
+  }
+
+  bool operator>(const String& a_left, const String& a_right) {
+    return a_right.GetLength() > a_left.GetLength();
+  }
+
   std::ostream& operator<<(std::ostream& a_stream, const String& a_string) {
     a_stream << a_string.m_data;
     return a_stream;

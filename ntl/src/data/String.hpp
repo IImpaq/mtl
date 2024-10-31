@@ -614,6 +614,22 @@ namespace ntl {
     friend String operator+(const String& a_left, bool a_right);
 
     /**
+     * @brief Overloading less than operator.
+     * @param a_left the left string to compare
+     * @param a_right the right string to compare
+     * @return if the left string is shorter than the right string
+     */
+    friend bool operator<(const String& a_left, const String& a_right);
+
+    /**
+     * @brief Overloading greater than operator.
+     * @param a_left the left string to compare
+     * @param a_right the right string to compare
+     * @return if the left string is longer than the right string
+     */
+    friend bool operator>(const String& a_left, const String& a_right);
+
+    /**
      * @brief Overloading the left shift operator.
      * @param a_stream the ostream
      * @param a_string the string
