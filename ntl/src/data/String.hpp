@@ -271,6 +271,16 @@ namespace ntl {
     [[nodiscard]] Size Find(char a_char) const;
 
     /**
+     * @brief Finds the first occurrence of a given sequence.
+     *
+     * @details Runtime: O(n), where n is the length of the string
+     *
+     * @param a_sequence a sequence
+     * @return the index of the first occurrence
+     */
+    [[nodiscard]] Size Find(const String& a_sequence) const;
+
+    /**
      * @brief Replaces a given string with another string.
      *
      * @details Runtime: O(n*m), where n is the length of the string
