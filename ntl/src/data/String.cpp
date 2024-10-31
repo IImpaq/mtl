@@ -41,10 +41,15 @@ namespace ntl {
   }
 
   bool operator==(const String::Iterator& a_first, const String::Iterator& a_second) {
-    return a_first.m_ptr == a_second.m_ptr;
+    if (a_first.m_ptr == nullptr || a_second.m_ptr == nullptr) {
+      return a_first.m_ptr == a_second.m_ptr;
+    }
+    return strcmp(a_first.m_ptr, a_second.m_ptr) == 0;
   }
 
-  bool operator!=(const String::Iterator& a_first, const String::Iterator& a_second) { return !(a_first == a_second); }
+  bool operator!=(const String::Iterator& a_first, const String::Iterator& a_second) {
+    return !(a_first == a_second);
+  }
 
   /*********************************************************************************************************************
    *                                                     STRING                                                        *
@@ -503,11 +508,15 @@ namespace ntl {
   }
 
   bool operator<(const String& a_left, const String& a_right) {
-    return a_left.GetLength() < a_right.GetLength();
+    if (a_left.m_data == nullptr) return a_right.m_data != nullptr;
+    if (a_right.m_data == nullptr) return false;
+    return strcmp(a_left.m_data, a_right.m_data) < 0;
   }
 
   bool operator>(const String& a_left, const String& a_right) {
-    return a_right.GetLength() > a_left.GetLength();
+    if (a_left.m_data == nullptr) return false;
+    if (a_right.m_data == nullptr) return true;
+    return strcmp(a_left.m_data, a_right.m_data) > 0;
   }
 
   std::ostream& operator<<(std::ostream& a_stream, const String& a_string) {
