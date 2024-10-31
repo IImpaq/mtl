@@ -256,6 +256,8 @@ namespace ntl {
      */
     void Resize(Size a_new_capacity);
 
+    void Clear();
+
     /**
      * @brief Gets how much size is occupied in the map.
      *
@@ -538,6 +540,17 @@ namespace ntl {
     }
 
     delete[] old_entries;
+  }
+
+  template<typename KeyType, typename ValueType>
+  void Map<KeyType, ValueType>::Clear() {
+    delete[] m_entries;
+
+    m_used = 0;
+    m_entries = new Entry[m_capacity];
+
+    for(int i = 0; i < m_capacity; i++)
+      m_entries[i].used = false;
   }
 
   template <typename KeyType, typename ValueType>
