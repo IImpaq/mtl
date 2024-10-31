@@ -196,6 +196,8 @@ namespace ntl {
      */
     ~Array();
 
+    Array<T>& operator=(const Array& other);
+
     /**
      * @brief Inserts a new element at the end of the array.
      *
@@ -661,9 +663,12 @@ namespace ntl {
   }
 
   template <typename T>
-  Array<T>::Array(const Array<T>& a_other)
-    : m_used(a_other.m_used), m_capacity(m_used * 2), m_data{new ArrayChunk[a_other.m_capacity]},
-      m_sorted(a_other.m_sorted) {
+  Array<T>::Array(const Array<T>& a_other) {
+    m_used = a_other.m_used;
+    m_capacity = m_used * 2;
+    m_data = new ArrayChunk[a_other.m_capacity];
+    m_sorted = a_other.m_sorted;
+
     for(Size i = 0; i < m_used; i++) {
       m_data[i].value = a_other.m_data[i].value;
     }
@@ -682,6 +687,22 @@ namespace ntl {
   template <typename T>
   Array<T>::~Array() {
     delete[] m_data;
+  }
+
+
+  template <typename T>
+  Array<T>& Array<T>::operator=(const Array& other) {
+    if (this != &other) {
+      delete[] m_data;
+      m_capacity = other.m_capacity;
+      m_used = other.m_used;
+      m_sorted = other.m_sorted;
+      m_data = new ArrayChunk[m_capacity];
+      for (size_t i = 0; i < m_used; ++i) {
+        m_data[i] = other.m_data[i];
+      }
+    }
+    return *this;
   }
 
   template <typename T>
