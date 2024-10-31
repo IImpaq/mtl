@@ -11,17 +11,17 @@ message(" - Defining basic variables...")
 set(CMAKE_CXX_STANDARD 23)
 
 message(" - Setting up make directories...")
-set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/${PROJECT_NAME}/)
+set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/${PROJECT_NAME}/)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/)
 
 message(" - Scanning for source files...")
 file(GLOB_RECURSE SOURCES
-        ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/src/*.cpp
-        ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/src/*.hpp
-        ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/src/*.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 
-include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/src/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 message(" - Creating static library...")
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
