@@ -623,4 +623,13 @@ namespace ntl {
   };
 } // namespace ntl
 
+namespace std {
+  template<>
+  struct hash<ntl::String> {
+    size_t operator()(const ntl::String& str) const {
+      return str.GetHash();
+    }
+  };
+}
+
 #endif // NTL_STRING_HPP
