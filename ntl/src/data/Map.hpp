@@ -46,6 +46,7 @@ namespace ntl {
       using reference = value_type&;
 
     private:
+      const Map* m_map;
       Entry* m_ptr;
       mutable value_type m_temp;
 
@@ -54,14 +55,14 @@ namespace ntl {
        * @brief Constructs a new iterator
        * @param a_ptr a pointer
        */
-      Iterator(Entry* a_ptr) : m_ptr(a_ptr) {}
+      Iterator(Entry* a_ptr, const Map* a_map) : m_ptr(a_ptr), m_map(a_map) {}
 
       /**
        * @brief Overloading reference operator.
        * @return the reference to the value of the current iteration
        */
       reference operator*() const {
-        m_temp = m_ptr->key, m_ptr->value;
+        m_temp = Pair<KeyType, ValueType>(m_ptr->key, m_ptr->value);
         return m_temp;
       }
 
@@ -81,6 +82,8 @@ namespace ntl {
       Iterator& operator++() {
         do {
           m_ptr++; // always move to next item
+          if (m_ptr >= m_map->m_entries + m_map->m_capacity)
+            break;
         } while(m_ptr->used == false);
         return *this;
       }
@@ -470,7 +473,7 @@ namespace ntl {
     if(!entry)
       return end();
 
-    return {entry};
+    return {entry, this};
   }
 
   template <typename KeyType, typename ValueType>
@@ -562,12 +565,12 @@ namespace ntl {
   typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::begin() const {
     Entry* ptr = m_entries;
     while(!ptr->used && ptr != (m_entries + m_capacity)) ptr++;
-    return Iterator(ptr);
+    return Iterator(ptr, this);
   }
 
   template <typename KeyType, typename ValueType>
   typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::end() const {
-    return Iterator(m_entries + m_capacity);
+    return Iterator(m_entries + m_capacity, this);
   }
 
   // ---------------
