@@ -20,6 +20,12 @@ namespace ntl::algorithms {
     BINARY_SEARCH = 0,
     FRONT_BACK_SEARCH = 1
   };
+
+  enum class Hash {
+    FNV1a = 0,
+    DJB2 = 1,
+    SDBM = 2,
+  };
 }
 
 #endif // NTL_ALGORITHMS_HPP
