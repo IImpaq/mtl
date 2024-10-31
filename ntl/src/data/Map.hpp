@@ -274,6 +274,9 @@ namespace ntl {
      */
     String ToString() const;
 
+    ValueType& operator[](const KeyType& a_key);
+    const ValueType& operator[](const KeyType& a_key) const;
+
     /**
      * @brief Gets the beginning of the iterator.
      * @return the iterator at the beginning
@@ -423,6 +426,16 @@ namespace ntl {
     result += ")";
 
     return result;
+  }
+
+  template<typename KeyType, typename ValueType>
+  ValueType& Map<KeyType, ValueType>::operator[](const KeyType& a_key) {
+    return At(a_key);
+  }
+
+  template<typename KeyType, typename ValueType>
+  const ValueType& Map<KeyType, ValueType>::operator[](const KeyType& a_key) const {
+    return Get(a_key);
   }
 
   template <typename KeyType, typename ValueType>
